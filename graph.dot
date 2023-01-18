@@ -1,0 +1,41 @@
+digraph G {
+    splines="True";
+
+    /* Entities */
+    user [shape="ellipse"]
+    node [shape="rectangle"]; {
+        login;
+        register;
+        home;
+        wallet;
+        transactions;
+        sendMoney;
+        deposit;
+        account;
+        updateUser;
+        walletSettings;
+    }
+    node [shape="diamond"]; {
+        condition1[label="logged in?"];
+    }
+    
+    /* Relationships */
+    user -> condition1 [label="init"];
+
+    condition1 -> login [label="no"];
+    condition1 -> home [label="yes"];
+
+    login -> register, home;
+
+    register -> login, home;
+
+    home -> wallet;
+    home -> account;
+
+    wallet -> sendMoney;
+    wallet -> deposit;
+    wallet -> transactions;
+    wallet -> walletSettings;
+
+    account -> updateUser;
+}
